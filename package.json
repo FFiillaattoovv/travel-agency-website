@@ -1,0 +1,16 @@
+{
+  "name": "travel-agency-website",
+  "version": "1.0.0",
+  "description": "The travel agency website",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "travel",
+    "agency",
+    "website"
+  ],
+  "author": "Maksim Filatov",
+  "license": "ISC"
+}
