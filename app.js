@@ -3,35 +3,30 @@ const expressHandlebars = require('express-handlebars');
 
 const app = express();
 
-app.engine('handlebars', expressHandlebars(
-    {defaultLayout: 'main'}
-));
+app.engine('handlebars', expressHandlebars({
+    defaultLayout: 'main',
+}));
 app.set('view engine', 'handlebars');
+
+app.use(express.static(__dirname + '/public'));
 
 const port = process.env.PORT || 3000;
 
-app.get('/', (req, res) => {
-    res.type('text/plain');
-    res.send('Home page');
-});
+app.get('/', (req, res) => res.render('home'));
 
-app.get('/about', (req, res) => {
-    res.type('text/plain');
-    res.send('About page');
-});
+app.get('/about', (req, res) => res.render('about'));
 
 app.use((req, res) => {
-    res.type('text/plain');
     res.status(404);
-    res.send('404 - Not Found');
+    res.render('404');
 });
 
 app.use((req, res, next, err) => {
     console.error(err.message);
-    res.type('text/plain');
     res.status(500);
-    res.send('500 - Server Error');
+    res.render('500');
 });
 
-app.listen(port, () => console.log(`Express started on http://localhost:${port}; ` +
+app.listen(port, () => console.log(
+    `Express started on http://localhost:${port}; ` +
     `press Ctrl-C to terminate.`));
