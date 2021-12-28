@@ -4,8 +4,17 @@ const handlers = require("./lib/handlers");
 
 const app = express();
 
+app.disable('x-powered-by');
+
 app.engine('handlebars', expressHandlebars({
     defaultLayout: 'main',
+    helpers: {
+        section: function(name, options) {
+            if (!this._sections) this._sections = {};
+            this._sections[name] = options.fn(this);
+            return null;
+        }
+    }
 }));
 app.set('view engine', 'handlebars');
 
