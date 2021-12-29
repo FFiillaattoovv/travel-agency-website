@@ -29,6 +29,10 @@ app.get('/', handlers.home);
 
 app.get('/about', handlers.about);
 
+app.post('/form', (req, res) => {
+    res.json(req.body);
+});
+
 app.use(handlers.notFound);
 
 app.use(handlers.serverError);
